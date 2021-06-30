@@ -59,7 +59,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/shape_point_red"
                     android:drawablePadding="10dp"
-                    android:text="红色的" />
+                    android:text="红色" />
 
 
                 <TextView
@@ -68,7 +68,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/shape_point_green"
                     android:drawablePadding="10dp"
-                    android:text="红色的" />
+                    android:text="绿色" />
 
 
                 <TextView
@@ -77,7 +77,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/shape_point_orange"
                     android:drawablePadding="10dp"
-                    android:text="红色的" />
+                    android:text="橘色" />
 
 
                 <TextView
@@ -86,7 +86,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/shape_point_blue"
                     android:drawablePadding="10dp"
-                    android:text="红色的" />
+                    android:text="蓝色" />
 
             </LinearLayout>
         </RelativeLayout>
