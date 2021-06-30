@@ -95,9 +95,7 @@ abstract class ChartView {
     }
 
     fun touchUp() {
-        mTouchPoint = null
-        mCoordinateData = null
-        mCoordinateView?.invalidate()
+        FloatViewPositionManager.clear()
     }
 
     abstract fun draw(

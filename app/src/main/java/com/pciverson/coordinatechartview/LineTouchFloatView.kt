@@ -2,7 +2,6 @@ package com.pciverson.coordinatechartview
 
 import android.content.Context
 import android.graphics.*
-import android.util.Log
 
 /**
  *
@@ -47,28 +46,42 @@ class LineTouchFloatView(var context: Context) : TouchFloatView() {
 
     override fun draw(canvas: Canvas, point: Point, it: ICoordinateValue?) {
         //绘制之前检测位置是否冲突
-        it?.let {
-            canvas.drawLine(
-                point.x.toFloat(),
-                mChartView!!.getYStartOffset(),
-                point.x.toFloat(),
-                (point.y - textOffsetY).toFloat(), floatPaint
-            )
-
+        it?.let { it ->
+            textOffsetY = ViewUtils.dp2px(context, 10f)
             val txt = it.getYValue().toString()
             val rect = Rect()
             floatPaint.getTextBounds(txt, 0, txt.length, rect)
             val textBgWidth = rect.right - rect.left
             val textBgHeight = rect.bottom - rect.top
 
-            canvas.drawRoundRect(
-                RectF(
-                    point.x.toFloat() - textBgWidth / 2,
-                    (point.y - textOffsetY - textBgHeight).toFloat(),
-                    point.x.toFloat() + textBgWidth / 2,
-                    (point.y - textOffsetY).toFloat()
-                ), radius.toFloat(), radius.toFloat(), floatPaint
+            var rectF = RectF(
+                point.x.toFloat() - textBgWidth / 2,
+                (point.y - textOffsetY - textBgHeight).toFloat(),
+                point.x.toFloat() + textBgWidth / 2,
+                (point.y - textOffsetY).toFloat()
             )
+            FloatViewPositionManager.pointPosition.forEach {
+                if (rectF.intersect(it)) {
+                    textOffsetY -= (it.top - it.bottom).toInt()
+                    rectF = RectF(
+                        point.x.toFloat() - textBgWidth / 2,
+                        (point.y - textOffsetY - textBgHeight).toFloat(),
+                        point.x.toFloat() + textBgWidth / 2,
+                        (point.y - textOffsetY).toFloat()
+                    )
+                }
+            }
+            canvas.drawRoundRect(
+                rectF
+                , radius.toFloat(), radius.toFloat(), floatPaint
+            )
+            canvas.drawLine(
+                point.x.toFloat(),
+                mChartView!!.getYStartOffset(),
+                point.x.toFloat(),
+                (point.y - textOffsetY).toFloat(), floatPaint
+            )
+            FloatViewPositionManager.pointPosition.add(rectF)
 
             val textRect = Rect()
             textPaint.getTextBounds(txt, 0, txt.length, textRect)

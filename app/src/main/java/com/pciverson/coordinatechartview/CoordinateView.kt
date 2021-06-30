@@ -48,7 +48,7 @@ class CoordinateView(context: Context, attributeSet: AttributeSet) : View(contex
     private var yk = 1f
 
     //距离坐标末端的间距（也就是x/y最后一个点的）
-    var endPositionEdgePixel = ViewUtils.dp2px(mContext, 20f)
+    var endPositionEdgePixel = ViewUtils.dp2px(mContext, 30f)
 
     //距离坐标起始端的间距（也就是x/y第一个点的）
     var startPositionEdgePixel = ViewUtils.dp2px(mContext, 20f)
