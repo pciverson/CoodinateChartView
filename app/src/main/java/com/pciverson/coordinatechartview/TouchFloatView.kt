@@ -12,6 +12,7 @@ import android.graphics.Point
  **/
 abstract class TouchFloatView {
     protected var mChartView: ChartView? = null
+    protected var mCoordinateView: CoordinateView? = null
 
     abstract fun draw(
         canvas: Canvas,
@@ -21,5 +22,9 @@ abstract class TouchFloatView {
 
     fun setChartView(chartView: ChartView) {
         this.mChartView = chartView
+    }
+
+    fun setCoordinateView(coordinateView: CoordinateView) {
+        this.mCoordinateView = coordinateView;
     }
 }

@@ -63,7 +63,7 @@ class BarTouchFloatView(
                 point.x.toFloat() + textBgWidth / 2 + mOffset + barWidth / 2,
                 (point.y - textOffsetY).toFloat()
             )
-            FloatViewPositionManager.pointPosition.forEach {
+            mCoordinateView?.pointPosition?.forEach {
                 if (rectF.intersect(it)) {
                     textOffsetY -= (it.top - it.bottom).toInt()
                     rectF = RectF(
@@ -85,7 +85,7 @@ class BarTouchFloatView(
                 (point.y - textOffsetY).toFloat(), floatPaint
             )
 
-            FloatViewPositionManager.pointPosition.add(rectF)
+            mCoordinateView?.pointPosition?.add(rectF)
 
             val textRect = Rect()
             textPaint.getTextBounds(txt, 0, txt.length, textRect)

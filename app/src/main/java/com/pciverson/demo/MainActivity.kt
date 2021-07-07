@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         val ovalTouchFloatView =
             BarTouchFloatView(this, ViewUtils.dp2px(this, 12f), ViewUtils.dp2px(this, 12f))
         ovalTouchFloatView.floatLineColor = Color.parseColor("#FF3131")
+        ovalTouchFloatView.setCoordinateView(cv)
         curveView.setTouchFloatView(ovalTouchFloatView)
 
         //设置柱状图数据
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             override fun getCoordinateValues(): List<CoordinateValueItem> {
                 return values
             }
+
             //这是该一组数据中的，y轴最大值的那一条数据
             override fun getMaxValue(): CoordinateValueItem {
                 return values[2]
@@ -57,6 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         val ovalTouchFloatView1 = BarTouchFloatView(this, ViewUtils.dp2px(this, 12f))
         ovalTouchFloatView1.floatLineColor = Color.parseColor("#50E383")
+        ovalTouchFloatView1.setCoordinateView(cv)
         curveView1.setTouchFloatView(ovalTouchFloatView1)
 
         curveView1.setAdapter(object : CoordinateValueAdapter<CoordinateValueItem>() {
@@ -78,6 +81,7 @@ class MainActivity : AppCompatActivity() {
         val ovalTouchFloatView2 =
             LineTouchFloatView(this)
         ovalTouchFloatView2.floatLineColor = Color.parseColor("#E97528")
+        ovalTouchFloatView2.setCoordinateView(cv)
         curveView2.setTouchFloatView(ovalTouchFloatView2)
         //设置数据
         curveView2.setAdapter(object : CoordinateValueAdapter<CoordinateValueItem>() {
@@ -95,9 +99,12 @@ class MainActivity : AppCompatActivity() {
         curveView3.lineColor = Color.parseColor("#1970F3")
         curveView3.startColor = Color.parseColor("#1119DAF3")
         curveView3.endColor = Color.parseColor("#6619DAF3")
+
         val ovalTouchFloatView3 =
             LineTouchFloatView(this)
         ovalTouchFloatView2.floatLineColor = Color.parseColor("#1970F3")
+        ovalTouchFloatView3.setCoordinateView(cv)
+
         curveView3.setTouchFloatView(ovalTouchFloatView3)
 
         //设置数据

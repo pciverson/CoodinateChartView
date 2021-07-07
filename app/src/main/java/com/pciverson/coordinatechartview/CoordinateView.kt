@@ -1,13 +1,11 @@
 package com.pciverson.coordinatechartview
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import java.util.*
 
 /**
  *
@@ -21,7 +19,25 @@ class CoordinateView(context: Context, attributeSet: AttributeSet) : View(contex
     private var minHeight: Int
     private var minWidth: Int
     private var mContext: Context = context
+    val pointPosition = TreeSet(object : Comparator<RectF> {
+        override fun compare(o1: RectF?, o2: RectF?): Int {
+            if (o1?.centerX() == o2?.centerX() && o1?.centerY() == o2?.centerY()) {
+                return 0
+            }
+            if (o1 != null && o2 != null) {
+                return if (o1.centerY() > o2.centerY()) {
+                    -1
+                } else {
+                    1
+                }
+            }
+            return 1
+        }
+    })
 
+    fun clear() {
+        pointPosition.clear()
+    }
 
     //坐标笔
     private lateinit var coordinateLinePaint: Paint
